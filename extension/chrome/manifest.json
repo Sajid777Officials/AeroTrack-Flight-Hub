@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "AeroTrack Flight Hub",
+  "short_name": "AeroTrack",
+  "version": "0.4.0",
+  "description": "Track flights from a focused dashboard with transparent, consent-based active-domain sharing.",
+  "icons": {
+    "16": "assets/icon-16.png",
+    "32": "assets/icon-32.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  },
+  "action": {
+    "default_title": "Verify AeroTrack permissions",
+    "default_popup": "permission-proof.html",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "32": "assets/icon-32.png",
+      "48": "assets/icon-48.png",
+      "128": "assets/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "alarms",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://aerotrack-api.aerotrack-sajid.workers.dev/*"
+  ],
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}

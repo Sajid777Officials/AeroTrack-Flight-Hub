@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AeroTrack Flight Hub</title>
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <main class="shell" id="top">
+    <header class="topbar">
+      <a href="#top" class="brand" aria-label="AeroTrack home"><span class="brand-mark" aria-hidden="true">✦</span><span id="app-name">AeroTrack Flight Hub</span><small id="build-label" class="build-label"></small></a>
+      <nav class="header-actions" aria-label="Extension actions">
+        <span id="privacy-state" class="privacy-state"></span>
+        <button id="manage-privacy" class="text-button" type="button">Privacy settings</button>
+      </nav>
+    </header>
+
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">FLIGHT INTELLIGENCE</p>
+      <h1 id="page-title">See the details behind every departure.</h1>
+      <p>Search a route or flight number to view schedule, terminal, gate, duration, and available live status data.</p>
+      <div class="hero-pills"><span>Route lookup</span><span>Flight number lookup</span><span>Clear privacy controls</span></div>
+    </section>
+
+    <section class="tracker-card" aria-label="Flight tracker">
+      <div class="mode-tabs" role="tablist" aria-label="Search method">
+        <button class="mode-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="route-form" data-mode="route">By route</button>
+        <button class="mode-tab" type="button" role="tab" aria-selected="false" aria-controls="flight-form" data-mode="flight">By flight number</button>
+      </div>
+
+      <form id="route-form" class="search-form" data-form="route" novalidate>
+        <div class="form-grid form-grid--route">
+          <label class="field autocomplete-field"><span>From</span><input id="origin" name="origin" autocomplete="off" placeholder="Airport or IATA code" role="combobox" aria-autocomplete="list" aria-controls="origin-listbox" aria-expanded="false"><div id="origin-listbox" class="suggestions" role="listbox" hidden></div></label>
+          <button class="swap-button" id="swap-route" type="button" aria-label="Swap departure and arrival airports">⇄</button>
+          <label class="field autocomplete-field"><span>To</span><input id="destination" name="destination" autocomplete="off" placeholder="Airport or IATA code" role="combobox" aria-autocomplete="list" aria-controls="destination-listbox" aria-expanded="false"><div id="destination-listbox" class="suggestions" role="listbox" hidden></div></label>
+          <label class="field"><span>Date</span><input name="date" type="date" required></label>
+        </div>
+        <button type="submit" class="primary">Track flights</button>
+      </form>
+
+      <form id="flight-form" class="search-form" data-form="flight" hidden novalidate>
+        <div class="form-grid form-grid--flight">
+          <label class="field autocomplete-field"><span>Airline</span><input id="airline" name="airline" autocomplete="off" placeholder="Airline or IATA code" role="combobox" aria-autocomplete="list" aria-controls="airline-listbox" aria-expanded="false"><div id="airline-listbox" class="suggestions" role="listbox" hidden></div></label>
+          <label class="field"><span>Flight number</span><input name="flightNumber" maxlength="8" inputmode="text" placeholder="e.g. 147" required></label>
+          <label class="field"><span>Date</span><input name="date" type="date" required></label>
+        </div>
+        <button type="submit" class="primary">Track flights</button>
+      </form>
+      <p class="data-note">Flight fields are sent only when you select <strong>Track flights</strong>, to the configured flight-data API.</p>
+    </section>
+
+    <section id="saved-searches" class="saved-searches" hidden aria-label="Saved and recent searches">
+      <div class="saved-column"><div class="saved-heading"><div><p class="eyebrow">SAVED</p><h2>Favorite lookups</h2></div><button id="clear-favorites" class="text-button" type="button">Clear</button></div><ul id="favorites-list" class="saved-list"></ul></div>
+      <div class="saved-column"><div class="saved-heading"><div><p class="eyebrow">RECENT</p><h2>Recent lookups</h2></div><button id="clear-recent" class="text-button" type="button">Clear</button></div><ul id="recent-list" class="saved-list"></ul></div>
+    </section>
+
+    <section id="optional-search" class="optional-search" hidden aria-label="Optional web search">
+      <div><p class="eyebrow">OPTIONAL WEB SEARCH</p><h2>Search the web in a new tab</h2><p>This optional tool does not change your browser’s default search engine.</p></div>
+      <form id="optional-search-form" class="web-search"><input name="query" aria-label="Web search" placeholder="Search the web"><button type="submit" class="secondary">Search</button></form>
+    </section>
+
+    <p id="message" class="message" role="status" aria-live="polite"></p>
+
+    <section class="results-section" id="results-heading" aria-label="Flight results">
+      <header class="results-header"><div><p class="eyebrow">FLIGHT RESULTS</p><h2>Current matches</h2><p id="result-count"></p></div><div class="results-actions"><span id="data-mode" class="data-mode"></span><button id="save-current" type="button" class="secondary" hidden>Save lookup</button><label class="sort-control">Sort <select id="sort"><option value="departure:asc">Departure · earliest</option><option value="departure:desc">Departure · latest</option><option value="arrival:asc">Arrival · earliest</option><option value="arrival:desc">Arrival · latest</option><option value="duration:asc">Duration · shortest</option><option value="duration:desc">Duration · longest</option></select></label></div></header>
+      <div id="results" class="results-grid"></div>
+    </section>
+
+    <footer class="footer"><span>Flight availability and status depend on the configured data provider.</span><button id="open-support" type="button" class="text-button">Support</button></footer>
+  </main>
+
+  <div id="consent-dialog" class="consent-backdrop" role="dialog" aria-modal="true" aria-labelledby="consent-title" hidden>
+    <section class="consent-card">
+      <p class="eyebrow">YOUR CHOICE</p><h2 id="consent-title">Enable optional web search?</h2>
+      <p>Flight tracking works either way. If you accept, AeroTrack displays an optional web-search field that opens the selected query in a new tab. The search field stays hidden when you decline.</p>
+      <div class="consent-actions"><button id="consent-decline" type="button" class="secondary">No, keep it hidden</button><button id="consent-accept" type="button" class="primary">Enable optional search</button></div>
+    </section>
+  </div>
+
+  <dialog id="details-dialog" class="details-dialog" aria-labelledby="detail-title"><div class="dialog-header"><h2 id="detail-title">Flight details</h2><button id="details-close" type="button" class="icon-button" aria-label="Close flight details">×</button></div><div id="detail-content"></div></dialog>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

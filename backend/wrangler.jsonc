@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "aerotrack-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-08-11",
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "ALLOW_EXTENSION_ORIGINS": "true",
+    "RETENTION_DAYS": "30"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "aerotrack-production",
+      "database_id": "56410978-3298-4353-9d05-36bfafb6a593",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "triggers": {
+    "crons": ["17 3 * * *"]
+  }
+}

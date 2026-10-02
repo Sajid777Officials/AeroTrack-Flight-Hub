@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AeroTrack Settings</title><link rel="stylesheet" href="css/app.css"></head>
+<body class="options-page"><main class="options-card">
+  <p class="eyebrow">AEROTRACK SETTINGS</p><h1>Privacy and display</h1><p>Manage active-domain sharing, optional web-search consent, saved lookups, API connection checks, and local display preferences.</p>
+  <section class="settings-section"><h2>Active-domain sharing</h2><p>When enabled, AeroTrack sends only a random installation ID, the active website hostname, and the server receive time. It does not send full URLs, page content, searches, old history, incognito tabs, or a hardware ID.</p><p id="domain-sharing-state" class="settings-status"></p><div class="button-row"><button id="domain-sharing-review" class="primary" type="button">Review and enable</button><button id="domain-sharing-disable" class="secondary" type="button">Turn off</button><button id="domain-sharing-retry" class="text-button" type="button">Retry connection</button></div></section>
+  <section class="settings-section"><h2>Optional web search</h2><p id="consent-state" class="settings-status"></p><div class="button-row"><button id="consent-accept" class="primary" type="button">Enable</button><button id="consent-decline" class="secondary" type="button">Keep hidden</button><button id="consent-reset" class="text-button" type="button">Ask me again</button></div></section>
+  <section class="settings-section"><h2>Saved lookups</h2><p id="saved-count" class="settings-status"></p><div class="button-row"><button id="clear-local-data" class="secondary" type="button">Clear saved lookups</button></div></section>
+  <section class="settings-section"><h2>Data connection</h2><p id="api-summary" class="settings-status"></p><div class="button-row"><button id="test-connection" class="secondary" type="button">Test API connection</button></div><p id="connection-result" class="settings-status"></p></section>
+  <section class="settings-section"><h2>Theme</h2><label class="field"><span>Appearance</span><select id="theme"><option value="system">System default</option><option value="light">Light</option><option value="dark">Dark</option></select></label></section>
+  <section class="settings-section"><h2>Help</h2><div class="button-row"><button id="privacy-link" class="text-button" type="button">Privacy policy</button><button id="support-link" class="text-button" type="button">Support</button></div></section>
+</main><script type="module" src="js/options.js"></script></body>
+</html>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AeroTrack Data Sharing Choice</title>
+  <link rel="stylesheet" href="css/privacy-consent.css">
+</head>
+<body>
+  <main class="consent-shell">
+    <header class="brand">
+      <img src="assets/icon-48.png" width="48" height="48" alt="">
+      <div><p>AEROTRACK FLIGHT HUB</p><h1>Your data-sharing choice</h1></div>
+    </header>
+
+    <section class="notice" aria-labelledby="choice-title">
+      <p class="eyebrow">OFF BY DEFAULT</p>
+      <h2 id="choice-title">Share active website domains?</h2>
+      <p>AeroTrack can send the domain of the website currently active in your browser to the configured AeroTrack service. Nothing is sent until you choose <strong>Enable domain sharing</strong>.</p>
+    </section>
+
+    <div class="data-grid">
+      <section class="data-card data-card--sent">
+        <h2>What will be sent</h2>
+        <ul>
+          <li>A random ID created for this extension installation</li>
+          <li>The active website hostname, such as <code>example.com</code></li>
+          <li>The time the server receives the record</li>
+        </ul>
+      </section>
+      <section class="data-card data-card--not-sent">
+        <h2>What will not be sent</h2>
+        <ul>
+          <li>Full URLs, paths, query text, or page titles</li>
+          <li>Page content, cookies, searches, or previous history</li>
+          <li>Incognito tabs or a hardware serial/device identifier</li>
+        </ul>
+      </section>
+    </div>
+
+    <p class="control-note">You can turn this off later from AeroTrack Settings. Authorized service administrators may access these records only to operate the disclosed active-domain record feature. Flight lookup and the optional web-search field remain separate controls.</p>
+
+    <div class="actions" id="choice-actions">
+      <button id="decline" class="secondary" type="button">No, keep it off</button>
+      <button id="accept" class="primary" type="button">Enable domain sharing</button>
+    </div>
+
+    <section class="result" id="result" role="status" aria-live="polite" hidden>
+      <h2 id="result-title"></h2>
+      <p id="result-detail"></p>
+      <button id="continue" class="primary" type="button">Continue to AeroTrack</button>
+    </section>
+
+    <button id="privacy-policy" class="link-button" type="button" hidden>Read privacy policy</button>
+  </main>
+  <script src="js/shared-config.js"></script>
+  <script src="js/privacy-consent.js"></script>
+</body>
+</html>

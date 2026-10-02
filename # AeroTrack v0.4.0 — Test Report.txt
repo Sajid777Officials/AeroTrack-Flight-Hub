@@ -1,0 +1,26 @@
+# AeroTrack v0.4.0 — Test Report
+
+Test date: 2026-08-15  
+Environment: Cloudflare Workers production, Cloudflare D1, Chrome, Microsoft Edge, Mozilla Firefox
+
+## Automated verification
+
+- Result: **21 passed, 0 failed**
+- Backend validation, privacy controls, D1/admin authorization, provider proxy mapping, readable error handling, local-timezone flight lookup, production files, permissions, and shared cross-browser code were covered.
+
+## Manual verification completed
+
+- Worker health endpoint returned a successful AeroTrack API response.
+- D1 migration completed and the protected admin page loaded activity records.
+- Consent-based active-domain records were received from Chrome, Edge, and Firefox with separate installation IDs.
+- Live DAC-to-CGP flight lookup returned 36 provider matches after the production deployment.
+- Aviationstack and admin credentials remained server-side and were not embedded in extension packages.
+
+## Permission proof
+
+Each browser package declares `storage`, `alarms`, and `tabs`. The toolbar permission verifier performs real API checks by writing and reading temporary local storage, creating and clearing a temporary alarm, and querying readable browser tabs. It displays a separate PASS/FAILED result for every permission.
+
+## Notes
+
+- The live demo deployment is configured at `https://aerotrack-api.aerotrack-sajid.workers.dev`.
+- Client-owned store accounts and final legal/privacy/support information are external handoff inputs, not embedded credentials.

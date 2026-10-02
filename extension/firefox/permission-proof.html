@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AeroTrack Permission Verification</title>
+  <link rel="stylesheet" href="css/permission-proof.css">
+</head>
+<body>
+  <main class="proof-shell">
+    <header class="proof-header">
+      <img src="assets/icon-48.png" width="42" height="42" alt="">
+      <div>
+        <p class="eyebrow">AeroTrack Flight Hub</p>
+        <h1>Permission Verification</h1>
+      </div>
+    </header>
+
+    <section class="summary pending" id="summary" aria-live="polite">
+      <span class="summary-icon" id="summary-icon">…</span>
+      <div>
+        <strong id="summary-title">Running live checks</strong>
+        <span id="summary-detail">Please wait a moment.</span>
+      </div>
+    </section>
+
+    <section class="permission-list" aria-label="Permission test results">
+      <article class="permission-card pending" data-permission="storage">
+        <span class="status-icon">…</span>
+        <div class="permission-copy">
+          <div class="permission-heading">
+            <h2>Storage</h2>
+            <span class="status-label">Checking</span>
+          </div>
+          <p>Secure local read and write test</p>
+        </div>
+      </article>
+
+      <article class="permission-card pending" data-permission="alarms">
+        <span class="status-icon">…</span>
+        <div class="permission-copy">
+          <div class="permission-heading">
+            <h2>Alarms</h2>
+            <span class="status-label">Checking</span>
+          </div>
+          <p>Background scheduling test</p>
+        </div>
+      </article>
+
+      <article class="permission-card pending" data-permission="tabs">
+        <span class="status-icon">…</span>
+        <div class="permission-copy">
+          <div class="permission-heading">
+            <h2>Tabs</h2>
+            <span class="status-label">Checking</span>
+          </div>
+          <p>Browser tab access test</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="backend-status pending" id="backend-status" aria-live="polite">
+      <span class="backend-status__icon" id="backend-status-icon">…</span>
+      <div>
+        <strong id="backend-status-title">Checking backend logging</strong>
+        <span id="backend-status-detail">Reading the current privacy and connection state.</span>
+      </div>
+    </section>
+
+    <dl class="proof-meta">
+      <div><dt>Browser</dt><dd id="browser-name">Detecting…</dd></div>
+      <div><dt>Extension version</dt><dd id="extension-version">—</dd></div>
+      <div><dt>Verified at</dt><dd id="verified-at">—</dd></div>
+    </dl>
+
+    <div class="actions">
+      <button type="button" id="rerun">Run verification again</button>
+      <button type="button" class="secondary" id="dashboard">Open dashboard</button>
+    </div>
+
+    <p class="footnote">Live results from the installed browser extension. No visited domain is displayed here.</p>
+  </main>
+  <script src="js/permission-proof.js"></script>
+</body>
+</html>

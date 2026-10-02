@@ -1,0 +1,16 @@
+{
+  "name": "aerotrack-cloudflare-backend",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:local": "wrangler d1 migrations apply aerotrack-production --local",
+    "db:remote": "wrangler d1 migrations apply aerotrack-production --remote",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
